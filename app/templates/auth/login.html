@@ -1,0 +1,40 @@
+{% extends "base_login.html" %}
+{% block subtitle %}login{% endblock %}
+{% block content %}
+<div class="container col-11 col-md-9" id="form-container" id="login">
+  <div class="row align-items-center gx-5">
+    <div class="col-md-6 order-md-2">
+     
+      {% include '/components/notification.html' %}
+      {{form.errors}}
+      {{form.csrf_token}}
+      <h2 id="link-container">Login</h2>
+      <form action="{{ url_for('auth.login') }}" method="POST">
+        <div class="form-group">
+          {{form.email(class_="form-control" ,placeholder="Digite seu Email")}}
+        </div>
+        <div class="form-group">
+          {{form.password(class_="form-control" ,placeholder="Digite sua senha")}}
+        </div>
+        <div class="form-group">
+          <div class="form-check-label" for="inlineCheckboxl">
+            {{form.remember(class_="form-check-input" )}}
+            <label for="inlineCheckboxl">
+              Permanecer connectado (por 7 dias)
+            </label>
+          </div>          
+        </div>
+        {{form.submit(class_="btn  btn-outline-success btn-block btn-lg")}}
+      </form>
+    </div>
+    <div class="col-md-6 order-md-1">
+      <div class="col-12" id="link-container">
+        <img src="../static/img/loginuser.png" alt="Hello New Customer" class="img-fluid">
+      </div>
+      <div class="col-12" id="link-container">
+        <a href="{{url_for('auth.registrar')}}">Ainda não tenho cadastro</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
